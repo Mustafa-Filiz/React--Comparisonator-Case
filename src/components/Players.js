@@ -10,7 +10,7 @@ import { CircularProgress, IconButton, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FavoriteRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
-import { circleColor, calculateAge } from '../utils/functions';
+import { circleColor, calculateAge, flagArrange } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -60,6 +60,8 @@ function Players() {
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
             {isLoading && <CircularProgress />}
             {players?.map((player) => {
+                const birthAlphaCode = flagArrange(player.birthArea.alpha2code)
+                const passportAlphaCode = flagArrange(player.passportArea.alpha2code)
                 return (
                     <ListItem
                         key={player.id}
@@ -83,12 +85,12 @@ function Players() {
                             </ListItemAvatar>
                             <Box className={classes.flagContainer}>
                                 <img
-                                    src={`https://flagcdn.com/w20/${player.birthArea.alpha2code.toLowerCase()}.png`}
+                                    src={`https://flagcdn.com/w20/${birthAlphaCode}.png`}
                                     width="20"
                                     alt="birthCountry"
                                 />
                                 <img
-                                    src={`https://flagcdn.com/w20/${player.passportArea.alpha2code.toLowerCase()}.png`}
+                                    src={`https://flagcdn.com/w20/${passportAlphaCode}.png`}
                                     width="20"
                                     alt="passportcountry"
                                 />
