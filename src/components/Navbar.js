@@ -45,7 +45,7 @@ function Navbar() {
         <Toolbar className={classes.toolbar}>
 			<img src={logo} alt="logo" style={{color : "white"}}/>
 			<Box className={classes.btnContainer}>
-				<NavLink to="/" exact activeClassName={classes.activeLink} className={classes.links}>
+				<NavLink to="/" activeClassName={classes.activeLink} className={classes.links}>
 					<Button className={classes.btn}>
 						Teams & Players
 					</Button>
