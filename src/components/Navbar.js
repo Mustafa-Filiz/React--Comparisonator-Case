@@ -20,15 +20,18 @@ const useStyles = makeStyles((theme) => {
 		btnContainer:{
 			width: "40%",
 			display: "flex",
-			justifyContent: "space-evenly",
+			justifyContent: "center",
 			alignItems:"center",
 		},
 		links:{
 			textDecoration: "none"
 		},
+		activeLink:{
+			borderBottom : "4px solid #2196F3"
+		},
 		btn:{
 			height: "5rem",
-			fontSize: "1.2rem",
+			fontSize: "1.1rem !important",
 		}
 	}
 })
@@ -42,17 +45,17 @@ function Navbar() {
         <Toolbar className={classes.toolbar}>
 			<img src={logo} alt="logo" style={{color : "white"}}/>
 			<Box className={classes.btnContainer}>
-				<NavLink to="#" className={classes.links}>
+				<NavLink to="/" exact activeClassName={classes.activeLink} className={classes.links}>
 					<Button className={classes.btn}>
 						Teams & Players
 					</Button>
 				</NavLink>
-				<NavLink to="#" className={classes.links}>
+				<NavLink to="/comparison" activeClassName={classes.activeLink} className={classes.links}>
 					<Button className={classes.btn}>
 						Compare Players
 					</Button>
 				</NavLink>
-				<NavLink to="#" className={classes.links}>
+				<NavLink to="/favourites" activeClassName={classes.activeLink} className={classes.links}>
 					<Button className={classes.btn}>
 						Favourites
 					</Button>
