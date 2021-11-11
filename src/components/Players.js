@@ -4,16 +4,50 @@ import { useParams } from 'react-router';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, IconButton, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { FavoriteRounded } from '@mui/icons-material';
+import { Box } from '@mui/system';
+import { circleColor, calculateAge } from '../utils/functions';
 
+const useStyles = makeStyles((theme) => {
+    return {
+        listItem:{
+            // display: "flex",
+            justifyContent:"space-around !important"
+        },
+        avatar: {
+            width: '5rem !important',
+            height: '5rem !important',
+            marginRight: '1rem',
+        },
+        flagContainer: {
+            width: "5%",
+            height: '2rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            marginRight: '1rem',
+        },
+        name:{
+            width: "40%",
+        },
+        age:{
+            width: "15%",
+        },
+        foot:{
+            width: "15%",
+        },
+    };
+});
 
 function Players() {
     const { id } = useParams();
     const [players, setPlayers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const classes = useStyles();
     useEffect(() => {
         setIsLoading(true);
         axios
@@ -23,31 +57,52 @@ function Players() {
     }, [id]);
 
     return (
-        <List
-            dense
-            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        >
-			{isLoading && <CircularProgress />}
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            {isLoading && <CircularProgress />}
             {players?.map((player) => {
-                const labelId = `checkbox-list-secondary-label-${player.id}`;
                 return (
                     <ListItem
                         key={player.id}
-                        // secondaryAction={
-                        // }
+                        secondaryAction={
+                            <IconButton size="large">
+                                <FavoriteRounded fontSize="large" />
+                            </IconButton>
+                        }
                         disablePadding
                     >
-                        <ListItemButton>
+                        <ListItemButton className={classes.listItem}>
                             <ListItemAvatar>
                                 <Avatar
+                                    className={classes.avatar}
+                                    sx={{
+                                        border: circleColor(player.role.code3),
+                                    }}
                                     alt={player.shortname}
                                     src={player.image}
                                 />
                             </ListItemAvatar>
-                            <ListItemText
-                                id={labelId}
-                                primary={`${player.firstName} ${player.middleName} ${player.lastName} `}
-                            />
+                            <Box className={classes.flagContainer}>
+                                <img
+                                    src={`https://flagcdn.com/w20/${player.birthArea.alpha2code.toLowerCase()}.png`}
+                                    width="20"
+                                    alt="birthCountry"
+                                />
+                                <img
+                                    src={`https://flagcdn.com/w20/${player.passportArea.alpha2code.toLowerCase()}.png`}
+                                    width="20"
+                                    alt="passportcountry"
+                                />
+                            </Box>
+                            <Typography className={classes.name}>
+                                {player.firstName} {player.middleName}{' '}
+                                {player.lastName}{' '}
+                            </Typography>
+                            <Typography className={classes.age}>
+                                Age : {calculateAge(player.birthDate)}
+                            </Typography>
+                            <Typography className={classes.foot}>
+                                Foot : {player.foot}
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                 );
