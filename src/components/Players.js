@@ -11,7 +11,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Avatar from '@mui/material/Avatar';
 import { CircularProgress, IconButton, Typography } from '@mui/material';
-import { makeStyles, withStyles } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import { FavoriteRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { circleColor, calculateAge, flagArrange } from '../utils/functions';
@@ -131,12 +131,12 @@ function Players() {
                             </Accordion>
                             <IconButton
                                 size="large"
-                                onClick={() => toggleFavourites(player.id)}
+                                onClick={() => toggleFavourites(player)}
                             >
                                 <FavoriteRounded
                                     fontSize="large"
                                     color={
-                                        favourites.includes(player.id)
+                                        favourites.find((favourite) => favourite.id === player.id)
                                             ? 'error'
                                             : 'action'
                                     }
