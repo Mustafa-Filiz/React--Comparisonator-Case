@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Stats from './Stats';
 import { useParams } from 'react-router';
 import List from '@mui/material/List';
@@ -15,6 +15,7 @@ import { makeStyles, withStyles } from '@mui/styles';
 import { FavoriteRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { circleColor, calculateAge, flagArrange } from '../utils/functions';
+import { AppContext } from '../context/AppContext';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -59,6 +60,8 @@ function Players() {
     const [players, setPlayers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const classes = useStyles();
+    const { favourites, toggleFavourites } = useContext(AppContext);
+
     useEffect(() => {
         setIsLoading(true);
         axios
@@ -121,14 +124,24 @@ function Players() {
                                     <Typography className={classes.foot}>
                                         Foot : {player.foot}
                                     </Typography>
-                                    <IconButton size="large">
-                                        <FavoriteRounded fontSize="large" />
-                                    </IconButton>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Stats id={player.id} />
                                 </AccordionDetails>
                             </Accordion>
+                            <IconButton
+                                size="large"
+                                onClick={() => toggleFavourites(player.id)}
+                            >
+                                <FavoriteRounded
+                                    fontSize="large"
+                                    color={
+                                        favourites.includes(player.id)
+                                            ? 'error'
+                                            : 'action'
+                                    }
+                                />
+                            </IconButton>
                         </ListItem>
                     );
                 })}
