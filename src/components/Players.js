@@ -1,22 +1,33 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Stats from './Stats';
 import { useParams } from 'react-router';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Avatar from '@mui/material/Avatar';
 import { CircularProgress, IconButton, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { makeStyles, withStyles } from '@mui/styles';
 import { FavoriteRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { circleColor, calculateAge, flagArrange } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => {
     return {
-        listItem:{
-            // display: "flex",
-            justifyContent:"space-around !important"
+        container: {
+            margin: 'auto',
+            maxWidth: '1370px',
+        },
+        accordion: {
+            width: '95%',
+            '& .MuiAccordionSummary-content': {
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+            },
         },
         avatar: {
             width: '5rem !important',
@@ -24,21 +35,21 @@ const useStyles = makeStyles((theme) => {
             marginRight: '1rem',
         },
         flagContainer: {
-            width: "5%",
+            width: '5%',
             height: '2rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
             marginRight: '1rem',
         },
-        name:{
-            width: "40%",
+        name: {
+            width: '40%',
         },
-        age:{
-            width: "15%",
+        age: {
+            width: '15%',
         },
-        foot:{
-            width: "15%",
+        foot: {
+            width: '15%',
         },
     };
 });
@@ -57,59 +68,72 @@ function Players() {
     }, [id]);
 
     return (
-        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            {isLoading && <CircularProgress />}
-            {players?.map((player) => {
-                const birthAlphaCode = flagArrange(player.birthArea.alpha2code)
-                const passportAlphaCode = flagArrange(player.passportArea.alpha2code)
-                return (
-                    <ListItem
-                        key={player.id}
-                        secondaryAction={
-                            <IconButton size="large">
-                                <FavoriteRounded fontSize="large" />
-                            </IconButton>
-                        }
-                        disablePadding
-                    >
-                        <ListItemButton className={classes.listItem}>
-                            <ListItemAvatar>
-                                <Avatar
-                                    className={classes.avatar}
-                                    sx={{
-                                        border: circleColor(player.role.code3),
-                                    }}
-                                    alt={player.shortname}
-                                    src={player.image}
-                                />
-                            </ListItemAvatar>
-                            <Box className={classes.flagContainer}>
-                                <img
-                                    src={`https://flagcdn.com/w20/${birthAlphaCode}.png`}
-                                    width="20"
-                                    alt="birthCountry"
-                                />
-                                <img
-                                    src={`https://flagcdn.com/w20/${passportAlphaCode}.png`}
-                                    width="20"
-                                    alt="passportcountry"
-                                />
-                            </Box>
-                            <Typography className={classes.name}>
-                                {player.firstName} {player.middleName}{' '}
-                                {player.lastName}{' '}
-                            </Typography>
-                            <Typography className={classes.age}>
-                                Age : {calculateAge(player.birthDate)}
-                            </Typography>
-                            <Typography className={classes.foot}>
-                                Foot : {player.foot}
-                            </Typography>
-                        </ListItemButton>
-                    </ListItem>
-                );
-            })}
-        </List>
+        <Box className={classes.container}>
+            <Typography variant="h2" className={classes.title}>
+                Players
+            </Typography>
+            <List sx={{ width: '100%' }}>
+                {isLoading && <CircularProgress />}
+                {players.map((player) => {
+                    const birthAlphaCode = flagArrange(
+                        player.birthArea.alpha2code
+                    );
+                    const passportAlphaCode = flagArrange(
+                        player.passportArea.alpha2code
+                    );
+                    return (
+                        <ListItem key={player.id}>
+                            <Accordion className={classes.accordion}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                >
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            className={classes.avatar}
+                                            sx={{
+                                                border: circleColor(
+                                                    player.role.code3
+                                                ),
+                                            }}
+                                            alt={player.shortname}
+                                            src={player.image}
+                                        />
+                                    </ListItemAvatar>
+                                    <Box className={classes.flagContainer}>
+                                        <img
+                                            src={`https://flagcdn.com/w20/${birthAlphaCode}.png`}
+                                            width="20"
+                                            alt="birthCountry"
+                                        />
+                                        <img
+                                            src={`https://flagcdn.com/w20/${passportAlphaCode}.png`}
+                                            width="20"
+                                            alt="passportcountry"
+                                        />
+                                    </Box>
+                                    <Typography className={classes.name}>
+                                        {player.firstName} {player.middleName}{' '}
+                                        {player.lastName}{' '}
+                                    </Typography>
+                                    <Typography className={classes.age}>
+                                        Age : {calculateAge(player.birthDate)}
+                                    </Typography>
+                                    <Typography className={classes.foot}>
+                                        Foot : {player.foot}
+                                    </Typography>
+                                    <IconButton size="large">
+                                        <FavoriteRounded fontSize="large" />
+                                    </IconButton>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Stats id={player.id} />
+                                </AccordionDetails>
+                            </Accordion>
+                        </ListItem>
+                    );
+                })}
+            </List>
+        </Box>
     );
 }
 
