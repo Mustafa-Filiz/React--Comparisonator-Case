@@ -1,4 +1,4 @@
-import { Rating, Slider, Typography } from '@mui/material';
+import { Slider, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import axios from 'axios';
