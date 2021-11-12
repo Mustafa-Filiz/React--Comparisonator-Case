@@ -1,13 +1,13 @@
 export const circleColor = (role) => {
     switch (role) {
         case 'GKP':
-            return '2px solid yellow';
+            return '3px solid yellow';
         case 'DEF':
-            return '2px solid blue';
+            return '3px solid blue';
         case 'MID':
-            return '2px solid green';
+            return '3px solid green';
         case 'FWD':
-            return '2px solid red';
+            return '3px solid red';
         default:
             break;
     }
@@ -20,5 +20,9 @@ export const calculateAge = (birthDate) => {
 };
 
 export const flagArrange = (alphaCode) => {
-    return alphaCode === 'EN' ? 'gb' : alphaCode?.toLowerCase();
+    if(alphaCode){
+        return alphaCode === 'EN' ? 'gb' : alphaCode?.toLowerCase();
+    }else{
+        return 'tr'
+    }
 };
