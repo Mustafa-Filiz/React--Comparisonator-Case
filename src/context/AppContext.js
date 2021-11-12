@@ -5,10 +5,10 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
     const [favourites, setFavourites] = useState([]);
 
-    const toggleFavourites = (id) => {
-        favourites.includes(id)
-            ? setFavourites(favourites.filter((favourite) => favourite !== id))
-            : setFavourites([...favourites, id]);
+    const toggleFavourites = (player) => {
+        favourites.find((favourite) => favourite.id === player.id)
+            ? setFavourites(favourites.filter((favourite) => favourite.id !== player.id))
+            : setFavourites([...favourites, player]);
     };
 
     useEffect(() => {
