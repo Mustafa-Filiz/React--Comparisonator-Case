@@ -45,19 +45,19 @@ function Navbar() {
         <Toolbar className={classes.toolbar}>
 			<img src={logo} alt="logo" style={{color : "white"}}/>
 			<Box className={classes.btnContainer}>
-				<NavLink to="/" activeClassName={classes.activeLink} className={classes.links}>
+				<NavLink exact to="/" activeClassName={classes.activeLink} className={classes.links}>
 					<Button className={classes.btn}>
 						Teams & Players
-					</Button>
-				</NavLink>
-				<NavLink to="/comparison" activeClassName={classes.activeLink} className={classes.links}>
-					<Button className={classes.btn}>
-						Compare Players
 					</Button>
 				</NavLink>
 				<NavLink to="/favourites" activeClassName={classes.activeLink} className={classes.links}>
 					<Button className={classes.btn}>
 						Favourites
+					</Button>
+				</NavLink>
+				<NavLink to="/comparison" activeClassName={classes.activeLink} className={classes.links}>
+					<Button className={classes.btn}>
+						Compare Players
 					</Button>
 				</NavLink>
 			</Box>
