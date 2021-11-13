@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => {
             display: 'flex',
             flexWrap: 'wrap',
             margin: '2rem auto',
-            // justifyContent: 'center',
         },
         card: {
             width: '10rem',
@@ -46,6 +45,7 @@ function Favourites() {
                             <CardHeader
                                 title={favourite.shortName}
                                 subheader={favourite.role.name}
+                                titleTypographyProps={{fontSize: "1.2rem"}}
                             />
                             <CardActions>
                                 <IconButton
