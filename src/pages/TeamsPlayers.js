@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CardMedia, CircularProgress, Typography } from '@mui/material';
 import { NavLink, useRouteMatch, Route } from 'react-router-dom';
@@ -58,8 +58,9 @@ function TeamsPlayers() {
     const classes = useStyles();
     const [teams, setTeams] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
     const { url, path } = useRouteMatch();
+    const playerRef = useRef()
+
 
     useEffect(() => {
         setIsLoading(true);
@@ -68,6 +69,11 @@ function TeamsPlayers() {
             .then((res) => setTeams(res.data.teams))
             .finally(setIsLoading(false));
     }, []);
+
+    const scrollPlayers = () => {
+        playerRef.current.scrollIntoView({behavior:"smooth", block:"start"})
+    }
+    
 
     return (
         <Box className={classes.container}>
@@ -85,6 +91,7 @@ function TeamsPlayers() {
                                 className={classes.card}
                                 activeClassName={classes.cardActive}
                                 key={team.id}
+                                onClick={scrollPlayers}
                             >
                                 <CardMedia
                                     className={classes.image}
@@ -97,7 +104,7 @@ function TeamsPlayers() {
                             </NavLink>
                         ))}
                     </Box>
-                    <Box className={classes.listContainer}>
+                    <Box className={classes.listContainer} ref={playerRef}>
                         <Route path={`${path}:id`} component={Players} />
                     </Box>
                 </>
