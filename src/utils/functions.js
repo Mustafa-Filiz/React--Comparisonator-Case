@@ -15,8 +15,8 @@ export function circleColor(role){
 
 export function calculateAge(birthDate){
     const year = Number(new Date().getFullYear());
-    const birthYear = Number(birthDate?.slice(0, 4));
-    return year - birthYear;
+    const birthYear = birthDate ? Number(birthDate.slice(0, 4)) : "No Data"
+    return birthDate ? year - birthYear : birthYear
 };
 
 export function flagArrange(alphaCode){
