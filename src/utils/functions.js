@@ -1,4 +1,4 @@
-export const circleColor = (role) => {
+export function circleColor(role){
     switch (role) {
         case 'GKP':
             return '3px solid yellow';
@@ -13,16 +13,22 @@ export const circleColor = (role) => {
     }
 };
 
-export const calculateAge = (birthDate) => {
+export function calculateAge(birthDate){
     const year = Number(new Date().getFullYear());
     const birthYear = Number(birthDate?.slice(0, 4));
     return year - birthYear;
 };
 
-export const flagArrange = (alphaCode) => {
+export function flagArrange(alphaCode){
     if(alphaCode){
-        return alphaCode === 'EN' ? 'gb' : alphaCode?.toLowerCase();
+        if(alphaCode === "EN"){
+            return "gb"
+        }else if(alphaCode === "KS"){
+            return "xk"
+        }else{
+            return alphaCode.toLowerCase()
+        }
     }else{
-        return 'tr'
+        return "tr"
     }
 };
