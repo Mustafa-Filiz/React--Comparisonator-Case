@@ -2,7 +2,6 @@ import { DeleteRounded } from '@mui/icons-material';
 import {
     Card,
     CardActions,
-    CardContent,
     CardHeader,
     CardMedia,
     IconButton,
@@ -20,11 +19,11 @@ const useStyles = makeStyles((theme) => {
             display: 'flex',
             flexWrap: 'wrap',
             margin: '2rem auto',
-            justifyContent: 'center',
+            // justifyContent: 'center',
         },
         card: {
-            width: '15rem',
-            height: '25rem',
+            width: '10rem',
+            height: '20rem',
             margin: '1rem',
         },
     };
