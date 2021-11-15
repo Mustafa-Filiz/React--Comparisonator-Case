@@ -57,13 +57,12 @@ const useStyles = makeStyles((theme) => {
 function TeamsPlayers() {
     const classes = useStyles();
     const [teams, setTeams] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const { url, path } = useRouteMatch();
     const playerRef = useRef()
 
 
     useEffect(() => {
-        setIsLoading(true);
         axios
             .get('https://mock-foooty-api.herokuapp.com/teams')
             .then((res) => setTeams(res.data.teams))
@@ -78,7 +77,7 @@ function TeamsPlayers() {
     return (
         <Box className={classes.container}>
             {isLoading ? (
-                <CircularProgress />
+                <Box><CircularProgress /></Box>
             ) : (
                 <>
                     <Typography variant="h2" className={classes.title}>
