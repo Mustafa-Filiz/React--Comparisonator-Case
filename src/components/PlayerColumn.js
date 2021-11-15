@@ -13,6 +13,20 @@ function PlayerColumn({ id }) {
 
     // console.log(playerStats)
 
+	const bestOfStats = {
+		index : "",
+		goals : "",
+		asists : "",
+		shots : "",
+		passes : "",
+		crosses : "",
+		keyPasses : "",
+		smartPasses : "",
+		touchInBox : "",
+		yellowCards : "",
+		redCards : "",
+	}
+
     return (
         <>
             {Object.values(playerStats).map((stat, index) => (
