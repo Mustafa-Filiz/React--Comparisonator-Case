@@ -12,14 +12,36 @@ import {
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import React, { useContext, useState } from 'react';
+import PlayerColumn from '../components/PlayerColumn';
 import { AppContext } from '../context/AppContext';
 
 const useStyles = makeStyles((theme) => {
     return {
         container: {
-            width:"100%",
-            height: "100vh",
+            width: '100%',
+            height: '80vh',
             display: 'flex',
+            justifyContent: 'flex-start',
+            // alignItems: 'flex-start',
+        },
+        players: {
+            display: 'flex',
+            alignItems: 'center',
+        },
+        emptyBox: {
+            width: '12rem',
+            height: "8rem",
+        },
+        playerInfo: {
+            width: '8rem',
+            height: '8rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        headings: {
+            width: '15rem',
         },
     };
 });
@@ -55,23 +77,28 @@ function Comparison() {
     return (
         <Box className={classes.container}>
             <Box>
-                <Typography>Index</Typography>
-                <Typography>Goals</Typography>
-                <Typography>Asists</Typography>
-                <Typography>Shots</Typography>
-                <Typography>Passes</Typography>
-                <Typography>Crosses</Typography>
-                <Typography>Key Passes</Typography>
-                <Typography>Smart Passes</Typography>
-                <Typography>Touch in Box</Typography>
-                <Typography color="yellow">Yellow Cards</Typography>
-                <Typography color="red">Red Cards</Typography>
+                <Box className={classes.emptyBox}></Box>
+                <Box className={classes.headings}>
+                    <Typography variant="h6">Index</Typography>
+                    <Typography variant="h6">Goals</Typography>
+                    <Typography variant="h6">Asists</Typography>
+                    <Typography variant="h6">Shots</Typography>
+                    <Typography variant="h6">Passes</Typography>
+                    <Typography variant="h6">Crosses</Typography>
+                    <Typography variant="h6">Key Passes</Typography>
+                    <Typography variant="h6">Smart Passes</Typography>
+                    <Typography variant="h6">Touch in Box</Typography>
+                    <Typography variant="h6" color="yellow">
+                        Yellow Cards
+                    </Typography>
+                    <Typography variant="h6" color="red">
+                        Red Cards
+                    </Typography>
+                </Box>
             </Box>
             <Box>
-                <IconButton
-                    size="large"
-                    onClick={handleMenuClick}
-                >
+                <PlayerColumn comparisonList={comparisonList} />
+                <IconButton size="large" onClick={handleMenuClick}>
                     <Add fontSize="large" />
                 </IconButton>
                 <Menu
