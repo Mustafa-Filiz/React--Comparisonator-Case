@@ -86,6 +86,7 @@ function Comparison() {
 
     const handleDeletePlayer = (id) => {
         setComparisonList(comparisonList.filter((player) => player.id !== id));
+        setBestOfStats({});
     };
 
     return (
@@ -102,10 +103,10 @@ function Comparison() {
                     <Typography variant="h6">Key Passes</Typography>
                     <Typography variant="h6">Smart Passes</Typography>
                     <Typography variant="h6">Touch in Box</Typography>
-                    <Typography variant="h6" color="yellow">
+                    <Typography variant="h6" color="#FFCB42">
                         Yellow Cards
                     </Typography>
-                    <Typography variant="h6" color="red">
+                    <Typography variant="h6" color="#eb5252">
                         Red Cards
                     </Typography>
                 </Box>
@@ -149,6 +150,7 @@ function Comparison() {
                                   <PlayerColumn
                                       bestOfStats={bestOfStats}
                                       setBestOfStats={setBestOfStats}
+                                      comparisonList={comparisonList}
                                       id={player.id}
                                   />
                               </Box>
@@ -189,7 +191,7 @@ function Comparison() {
                             })
                         ) : (
                             <MenuItem>
-                                <ListItemText primary="Your favourite list is empty." />
+                                <ListItemText primary="Your favourite player list is empty." />
                             </MenuItem>
                         )}
                     </MenuList>
