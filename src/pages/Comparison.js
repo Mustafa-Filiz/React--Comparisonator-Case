@@ -62,6 +62,8 @@ function Comparison() {
     const { favourites } = useContext(AppContext);
 
     const [comparisonList, setComparisonList] = useState([]);
+    const [bestOfStats, setBestOfStats] = useState({});
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -85,8 +87,6 @@ function Comparison() {
     const handleDeletePlayer = (id) => {
         setComparisonList(comparisonList.filter((player) => player.id !== id));
     };
-
-    console.log(comparisonList);
 
     return (
         <Box className={classes.container}>
@@ -146,7 +146,11 @@ function Comparison() {
                                           {player.shortName}
                                       </Typography>
                                   </Box>
-                                  <PlayerColumn id={player.id} />
+                                  <PlayerColumn
+                                      bestOfStats={bestOfStats}
+                                      setBestOfStats={setBestOfStats}
+                                      id={player.id}
+                                  />
                               </Box>
                           );
                       })
