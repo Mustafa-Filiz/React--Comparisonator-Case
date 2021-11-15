@@ -82,8 +82,8 @@ function Stats({ id }) {
                     <Typography>Key Passes</Typography>
                     <Typography>Smart Passes</Typography>
                     <Typography>Touch in Box</Typography>
-                    <Typography color="yellow">Yellow Cards</Typography>
-                    <Typography color="red">Red Cards</Typography>
+                    <Typography color="#FFCB42">Yellow Cards</Typography>
+                    <Typography color="#eb5252">Red Cards</Typography>
                 </Box>
                 <Box>
                     {Object.values(stats)
