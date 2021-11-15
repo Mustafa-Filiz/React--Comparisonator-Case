@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import axios from 'axios';
 
-function PlayerColumn({ id, bestOfStats, setBestOfStats }) {
+function PlayerColumn({ id, bestOfStats, setBestOfStats, comparisonList }) {
     const [playerStats, setPlayerStats] = useState({});
 
     useEffect(() => {
@@ -23,9 +23,6 @@ function PlayerColumn({ id, bestOfStats, setBestOfStats }) {
               )
             : setBestOfStats(playerStats);
     }, [playerStats, bestOfStats, setBestOfStats]);
-
-    console.log('playerstats', playerStats);
-    console.log('bests', bestOfStats);
 
     return (
         <>
