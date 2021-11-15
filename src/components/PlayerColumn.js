@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import axios from 'axios';
 
-function PlayerColumn({ id }) {
+function PlayerColumn({ id, bestOfStats, setBestOfStats }) {
     const [playerStats, setPlayerStats] = useState({});
 
     useEffect(() => {
@@ -11,26 +11,40 @@ function PlayerColumn({ id }) {
             .then((res) => setPlayerStats(res.data.stats));
     }, [id]);
 
-    // console.log(playerStats)
+    useEffect(() => {
+        Object.keys(bestOfStats).length
+            ? Object.keys(bestOfStats).map((stat) =>
+                  playerStats[stat] > bestOfStats[stat]
+                      ? setBestOfStats({
+                            ...bestOfStats,
+                            [stat]: playerStats[stat],
+                        })
+                      : null
+              )
+            : setBestOfStats(playerStats);
+    }, [playerStats, bestOfStats, setBestOfStats]);
 
-	const bestOfStats = {
-		index : "",
-		goals : "",
-		asists : "",
-		shots : "",
-		passes : "",
-		crosses : "",
-		keyPasses : "",
-		smartPasses : "",
-		touchInBox : "",
-		yellowCards : "",
-		redCards : "",
-	}
+    console.log('playerstats', playerStats);
+    console.log('bests', bestOfStats);
 
     return (
         <>
-            {Object.values(playerStats).map((stat, index) => (
-                <Typography key={index} variant="h6">{Math.round(Number(stat))}</Typography>
+            {Object.keys(playerStats).map((key, index) => (
+                <Typography
+                    key={index}
+                    variant="h6"
+                    sx={{
+                        width: '80%',
+                        textAlign: 'center',
+                        backgroundColor: () => {
+                            return playerStats[key] === bestOfStats[key]
+                                ? 'yellow'
+                                : 'white';
+                        },
+                    }}
+                >
+                    {Math.round(Number(playerStats[key]))}
+                </Typography>
             ))}
         </>
     );
