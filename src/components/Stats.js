@@ -36,7 +36,7 @@ function Stats({ id }) {
         axios
             .get(`https://mock-foooty-api.herokuapp.com/players/${id}/stats`)
             .then((res) => setStats(res.data.stats));
-    }, []);
+    }, [id]);
 
     console.log(Object.values(stats));
 
