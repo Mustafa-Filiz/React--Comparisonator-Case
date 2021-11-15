@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            '&:hover': {
+                backgroundColor: '#a0cbee',
+                color: '#fff',
+            },
         },
         image: {
             width: '5rem !important',
@@ -59,8 +63,7 @@ function TeamsPlayers() {
     const [teams, setTeams] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { url, path } = useRouteMatch();
-    const playerRef = useRef()
-
+    const playerRef = useRef();
 
     useEffect(() => {
         axios
@@ -70,14 +73,18 @@ function TeamsPlayers() {
     }, []);
 
     const scrollPlayers = () => {
-        playerRef.current.scrollIntoView({behavior:"smooth", block:"start"})
-    }
-    
+        playerRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
+    };
 
     return (
         <Box className={classes.container}>
             {isLoading ? (
-                <Box><CircularProgress /></Box>
+                <Box>
+                    <CircularProgress />
+                </Box>
             ) : (
                 <>
                     <Typography variant="h2" className={classes.title}>
