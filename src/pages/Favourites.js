@@ -40,12 +40,13 @@ function Favourites() {
                         <Card key={favourite.id} className={classes.card}>
                             <CardMedia
                                 component="img"
+                                sx={{ height: '10rem'}}
                                 image={favourite.image}
                             />
                             <CardHeader
                                 title={favourite.shortName}
                                 subheader={favourite.role.name}
-                                titleTypographyProps={{fontSize: "1.2rem"}}
+                                titleTypographyProps={{ fontSize: '1.2rem' }}
                             />
                             <CardActions>
                                 <IconButton
