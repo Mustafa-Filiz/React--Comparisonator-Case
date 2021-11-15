@@ -1,13 +1,13 @@
 export function circleColor(role){
     switch (role) {
         case 'GKP':
-            return '3px solid yellow';
+            return '3px solid #E3DF66';
         case 'DEF':
-            return '3px solid blue';
+            return '3px solid #2AA5C1';
         case 'MID':
-            return '3px solid green';
+            return '3px solid #59B73D';
         case 'FWD':
-            return '3px solid red';
+            return '3px solid #C03268';
         default:
             break;
     }
