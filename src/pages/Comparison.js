@@ -1,6 +1,7 @@
-import { Add } from '@mui/icons-material';
+import { Add, Delete } from '@mui/icons-material';
 import {
     Avatar,
+    Badge,
     IconButton,
     ListItemAvatar,
     ListItemText,
@@ -18,30 +19,39 @@ import { AppContext } from '../context/AppContext';
 const useStyles = makeStyles((theme) => {
     return {
         container: {
-            width: '100%',
+            width: '90%',
             height: '80vh',
+            margin: '1.5rem auto',
             display: 'flex',
             justifyContent: 'flex-start',
-            // alignItems: 'flex-start',
-        },
-        players: {
-            display: 'flex',
-            alignItems: 'center',
         },
         emptyBox: {
-            width: '12rem',
-            height: "8rem",
-        },
-        playerInfo: {
-            width: '8rem',
-            height: '8rem',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            width: '10rem',
+            height: '10rem',
         },
         headings: {
-            width: '15rem',
+            width: '10rem',
+        },
+        stats: {
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+        },
+        btn: {
+            width: '7rem',
+            height: '7rem',
+        },
+        players: {
+            width: '14rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+        playerInfo: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            height: '10rem',
         },
     };
 });
@@ -72,6 +82,10 @@ function Comparison() {
         setAnchorEl(null);
     };
 
+    const handleDeletePlayer = (id) => {
+        setComparisonList(comparisonList.filter((player) => player.id !== id));
+    };
+
     console.log(comparisonList);
 
     return (
@@ -96,9 +110,52 @@ function Comparison() {
                     </Typography>
                 </Box>
             </Box>
-            <Box>
-                <PlayerColumn comparisonList={comparisonList} />
-                <IconButton size="large" onClick={handleMenuClick}>
+            <Box className={classes.stats}>
+                {comparisonList.length
+                    ? comparisonList.map((player) => {
+                          return (
+                              <Box key={player.id} className={classes.players}>
+                                  <Box className={classes.playerInfo}>
+                                      <Badge
+                                          sx={{ justifyContent: 'center' }}
+                                          anchorOrigin={{
+                                              vertical: 'bottom',
+                                              horizontal: 'left',
+                                          }}
+                                          badgeContent={
+                                              <IconButton
+                                                  onClick={() =>
+                                                      handleDeletePlayer(
+                                                          player.id
+                                                      )
+                                                  }
+                                              >
+                                                  <Delete color="action" />
+                                              </IconButton>
+                                          }
+                                      >
+                                          <Avatar
+                                              sx={{ width: 80, height: 80 }}
+                                              src={player.image}
+                                          />
+                                      </Badge>
+                                      <Typography
+                                          variant="h5"
+                                          sx={{ fontWeight: 600 }}
+                                      >
+                                          {player.shortName}
+                                      </Typography>
+                                  </Box>
+                                  <PlayerColumn id={player.id} />
+                              </Box>
+                          );
+                      })
+                    : null}
+                <IconButton
+                    className={classes.btn}
+                    size="large"
+                    onClick={handleMenuClick}
+                >
                     <Add fontSize="large" />
                 </IconButton>
                 <Menu
