@@ -35,7 +35,7 @@ function PlayerColumn({ id, bestOfStats, setBestOfStats, comparisonList }) {
                         textAlign: 'center',
                         backgroundColor: () => {
                             return playerStats[key] === bestOfStats[key]
-                                ? 'yellow'
+                                ? '#FFBC00'
                                 : 'white';
                         },
                     }}
