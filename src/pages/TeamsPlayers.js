@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => {
         image: {
             width: '5rem !important',
             marginBottom: '0.8rem',
-            
+
             [theme.breakpoints.down("sm")] : {
                 width: "4rem !important",
             },
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => {
         },
         listContainer: {
             margin: '2rem auto',
-            width: '85%',
+            width: '95%',
         },
     };
 });

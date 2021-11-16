@@ -27,13 +27,32 @@ const useStyles = makeStyles((theme) => {
             [theme.breakpoints.down('md')]: {
                 fontSize: '1.5rem !important',
             },
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '1rem !important',
+            },
+        },
+        sliderInfoText: {
+            color: '#2196F3',
+            fontSize: '1rem',
+            textAlign: 'center',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '0.8rem !important',
+            },
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '0.5rem !important',
+            },
         },
         stats: {
             width: '30%',
             display: 'flex',
             justifyContent: 'space-between',
-            [theme.breakpoints.down('md')]: {
-                fontSize: '0.8rem !important',
+            '& p': {
+                [theme.breakpoints.down('md')]: {
+                    fontSize: '0.8rem !important',
+                },
+                [theme.breakpoints.down('sm')]: {
+                    fontSize: '0.6rem !important',
+                },
             },
         },
     };
@@ -60,13 +79,7 @@ function Stats({ id }) {
                 <Typography className={classes.sliderInfo}>
                     {stats.index ? Math.round(stats.index) : 'No Data'}
                 </Typography>
-                <Typography
-                    sx={{
-                        color: '#2196F3',
-                        fontSize: '1rem',
-                        textAlign: 'center',
-                    }}
-                >
+                <Typography className={classes.sliderInfoText}>
                     COMPARISONATOR INDEX
                 </Typography>
             </Box>

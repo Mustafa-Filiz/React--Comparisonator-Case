@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => {
             maxWidth: '1370px',
         },
         accordion: {
-            width: '95%',
+            width: '100%',
             '& .MuiAccordionSummary-content': {
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
@@ -52,17 +52,26 @@ const useStyles = makeStyles((theme) => {
             [theme.breakpoints.down('md')]: {
                 fontSize: '0.8rem !important',
             },
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '0.5rem !important',
+            },
         },
         age: {
             width: '15%',
             [theme.breakpoints.down('md')]: {
                 fontSize: '0.8rem !important',
             },
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '0.5rem !important',
+            },
         },
         foot: {
             width: '15%',
             [theme.breakpoints.down('md')]: {
                 fontSize: '0.8rem !important',
+            },
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '0.5rem !important',
             },
         },
     };
@@ -143,11 +152,9 @@ function Players() {
                                 </AccordionDetails>
                             </Accordion>
                             <IconButton
-                                size="large"
                                 onClick={() => toggleFavourites(player)}
                             >
                                 <FavoriteRounded
-                                    fontSize="large"
                                     color={
                                         favourites.find(
                                             (favourite) =>
