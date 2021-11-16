@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => {
             width: '5rem !important',
             height: '5rem !important',
             marginRight: '1rem',
+            [theme.breakpoints.down('sm')]: {
+                width: '3rem !important',
+                height: '3rem !important',
+            },
         },
         flagContainer: {
             width: '5%',
@@ -45,12 +49,21 @@ const useStyles = makeStyles((theme) => {
         },
         name: {
             width: '40%',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '0.8rem !important',
+            },
         },
         age: {
             width: '15%',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '0.8rem !important',
+            },
         },
         foot: {
             width: '15%',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '0.8rem !important',
+            },
         },
     };
 });
@@ -136,7 +149,10 @@ function Players() {
                                 <FavoriteRounded
                                     fontSize="large"
                                     color={
-                                        favourites.find((favourite) => favourite.id === player.id)
+                                        favourites.find(
+                                            (favourite) =>
+                                                favourite.id === player.id
+                                        )
                                             ? 'error'
                                             : 'action'
                                     }
