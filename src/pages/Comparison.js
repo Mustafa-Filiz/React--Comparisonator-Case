@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => {
     return {
         container: {
             width: '90%',
-            height: '80vh',
+            height: '70vh',
             margin: '1.5rem auto',
             display: 'flex',
             justifyContent: 'flex-start',

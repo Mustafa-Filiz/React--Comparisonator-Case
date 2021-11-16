@@ -15,7 +15,7 @@ import { AppContext } from '../context/AppContext';
 const useStyles = makeStyles((theme) => {
     return {
         container: {
-            width: '90%',
+            width: '95%',
             display: 'flex',
             flexWrap: 'wrap',
             margin: '2rem auto',

@@ -32,7 +32,10 @@ const useStyles = makeStyles((theme) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-			[theme.breakpoints.down('md')]: {
+            [theme.breakpoints.down('lg')]: {
+                width: '60%',
+            },
+            [theme.breakpoints.down('md')]: {
                 display: 'none !important',
             },
         },
@@ -105,7 +108,12 @@ function Navbar() {
                     >
                         <MenuIcon fontSize="large" />
                     </IconButton>
-                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose} className={classes.menu}>
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        className={classes.menu}
+                    >
                         <MenuItem>
                             <NavLink
                                 exact
