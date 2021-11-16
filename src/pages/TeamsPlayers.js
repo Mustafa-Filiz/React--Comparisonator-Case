@@ -9,12 +9,14 @@ import Players from '../components/Players';
 const useStyles = makeStyles((theme) => {
     return {
         container: {
+            width:"100%",
             margin: 'auto',
             maxWidth: '1370px',
         },
         title: {
+            width: '90%',
             fontWeight: '600 !important',
-            margin: '1rem 8rem !important',
+            margin: '1rem !important',
         },
         cardContainer: {
             width: '90%',
@@ -39,10 +41,20 @@ const useStyles = makeStyles((theme) => {
                 backgroundColor: '#a0cbee',
                 color: '#fff',
             },
+
+            [theme.breakpoints.down("sm")] : {
+                width: "3rem",
+                height:"6rem",
+                padding: '2rem',
+            },
         },
         image: {
             width: '5rem !important',
             marginBottom: '0.8rem',
+            
+            [theme.breakpoints.down("sm")] : {
+                width: "4rem !important",
+            },
         },
         teamName: {
             fontSize: '1rem !important',
