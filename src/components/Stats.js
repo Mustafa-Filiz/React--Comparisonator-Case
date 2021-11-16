@@ -20,10 +20,21 @@ const useStyles = makeStyles((theme) => {
                 display: 'none ',
             },
         },
+        sliderInfo: {
+            color: '#2196F3',
+            fontSize: '2.5rem !important',
+            fontWeight: '600 !important',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '1.5rem !important',
+            },
+        },
         stats: {
             width: '30%',
             display: 'flex',
             justifyContent: 'space-between',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '0.8rem !important',
+            },
         },
     };
 });
@@ -38,8 +49,6 @@ function Stats({ id }) {
             .then((res) => setStats(res.data.stats));
     }, [id]);
 
-    console.log(Object.values(stats));
-
     return (
         <Box className={classes.dropdown}>
             <Box className={classes.slider}>
@@ -48,16 +57,16 @@ function Stats({ id }) {
                     max={500}
                     sx={{ height: '1rem' }}
                 />
+                <Typography className={classes.sliderInfo}>
+                    {stats.index ? Math.round(stats.index) : 'No Data'}
+                </Typography>
                 <Typography
                     sx={{
                         color: '#2196F3',
-                        fontSize: '2.5rem',
-                        fontWeight: 600,
+                        fontSize: '1rem',
+                        textAlign: 'center',
                     }}
                 >
-                    {stats.index ? Math.round(stats.index) : 'No Data'}
-                </Typography>
-                <Typography sx={{ color: '#2196F3', fontSize: '1rem' }}>
                     COMPARISONATOR INDEX
                 </Typography>
             </Box>
