@@ -13,9 +13,9 @@ const AppContextProvider = ({ children }) => {
 
     useEffect(() => {
         const localFavourites = window.localStorage.getItem('favouritePlayers');
-        if (localFavourites.length) {
-            setFavourites(JSON.parse(localFavourites));
-        }
+        if (!localFavourites) return
+
+        setFavourites(JSON.parse(localFavourites));
     }, []);
 
     useEffect(() => {
